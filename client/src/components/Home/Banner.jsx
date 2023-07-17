@@ -20,12 +20,16 @@ const responsive = {
       items: 1
     }
   };
-const Image=styled("img")({
+const Image=styled("img")(({theme})=>({
     width:'100%',
     height:280,
     // marginTop:-50,
+    [theme.breakpoints.down('md')]:{
+      objectFit:'cover',
+      height:180
+    }
 
-})
+}))
 
 const Banner=()=>{
     return(
