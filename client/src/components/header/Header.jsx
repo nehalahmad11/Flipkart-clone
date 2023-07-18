@@ -1,6 +1,8 @@
 
 
-import {AppBar,Toolbar,Box,Typography,styled} from "@mui/material";
+import {AppBar,Toolbar,Box,Typography, IconButton,styled, Icon} from "@mui/material";
+
+import {Menu} from '@mui/icons-material';
 // components import here 
 import Search from "./Search";
 import CustomButtons from "./CustomButtons";
@@ -33,10 +35,21 @@ const PlusLogoImg=styled("img")({
 })
 
 // header margin handle the css here
-const CustomWrapperButton=styled(Box)`
- margin: 0 5% 0 auto;
+const CustomWrapperButton=styled(Box)(({theme})=>({
+    margin:'0 5% 0 auto',
+    [theme.breakpoints.down('md')]:{
+        display:'none'
+    }
+}))
+ 
+// menu bar Buttton of css
+const MenuButton=styled(IconButton)(({theme})=>({
+    display:'none',
+    [theme.breakpoints.down('md')]:{
+        display:'block'
+    }
+}))
 
-`
 
 
 const Header=()=>{
@@ -45,6 +58,9 @@ const Header=()=>{
     return (
         <StyledHeader>
             <Toolbar style={{minHeight:"55px"}}>
+            <MenuButton>
+                <Menu/>
+            </MenuButton>
                 <Component to={'/'}>
                 <img src={LogoUrl} alt="logo" style={{width:"75px"}}/>
                 <Box style={{display:"flex"}}>
