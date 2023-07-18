@@ -4,6 +4,7 @@ import {AppBar,Toolbar,Box,Typography,styled} from "@mui/material";
 // components import here 
 import Search from "./Search";
 import CustomButtons from "./CustomButtons";
+import { Link } from "react-router-dom";
 
 
 // Here managing Header css using material ui------->>>>>>>>>>>
@@ -13,9 +14,11 @@ import CustomButtons from "./CustomButtons";
         height: 55px;
  `
 //  managing Component css here
-     const Component=styled(Box)`
+     const Component=styled(Link)`
         margin-left:12%;
         line-height:0;
+        text-decoration:none;
+        color:inherit;
      `
 // manage SubHeading css here
 const SubHeading=styled(Typography)`
@@ -42,7 +45,7 @@ const Header=()=>{
     return (
         <StyledHeader>
             <Toolbar style={{minHeight:"55px"}}>
-                <Component>
+                <Component to={'/'}>
                 <img src={LogoUrl} alt="logo" style={{width:"75px"}}/>
                 <Box style={{display:"flex"}}>
                 <SubHeading>

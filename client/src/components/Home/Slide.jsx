@@ -5,6 +5,8 @@ import { Box,Typography,Button,Divider,styled} from "@mui/material";
 // here react countdown 
 import Countdown from 'react-countdown';
 
+import { Link } from "react-router-dom";
+
 
 
 // Responacive Carousel maneging here
@@ -103,12 +105,15 @@ const Slide=({products,title,timer})=>{
             >
                 {
                     products.map(product=>(
+                        // here wrap all the product details in Router....
+                     <Link to={`product/${product.id}`} style={{textDecoration:'none'}}>
                         <Box textAlign="center" style={{padding:'25px 15px'}}>
-                    <Image src={product.url} alt="product" />
-                    <Text style={{fontWeight:600,color:212121}}>{product.title.shortTitle}</Text>
-                    <Text style={{color:'green'}}>{product.discount}</Text>
-                    <Text style={{color:212121,opacity:'.6'}}>{product.tagline}</Text>
-                    </Box>
+                            <Image src={product.url} alt="product" />
+                            <Text style={{fontWeight:600,color:'#212121'}}>{product.title.shortTitle}</Text>
+                            <Text style={{color:'green'}}>{product.discount}</Text>
+                            <Text style={{color:'#212121',opacity:'.6'}}>{product.tagline}</Text>
+                        </Box>
+                     </Link>
                     ))
                 }
             </Carousel>

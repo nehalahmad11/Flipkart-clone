@@ -18,3 +18,15 @@ export const getProducts= () => async(dispatch)=>{ // middleware for dispatching
         dispatch({type: actionTypes.GET_PRODUCTS_FAIL,payload: error.message});
     }   
 }
+
+// here fetching the details of Products 
+// id is coming from back as props
+export const getProductsDetails=(id)=>async(dispatch)=>{
+        try{
+            dispatch({type:actionTypes.GET_PROUDCTS_DETAILS_REQUEST});
+            const { data }= await axios.get(`${URL}/product/${id}`);
+            dispatch({type: actionTypes.GET_PROUDCTS_DETAILS_SUCCES,payload: data});
+        }catch(error){
+            dispatch({type: actionTypes.GET_PROUDCTS_DETAILS_FAIL,payload:error.message});
+        }
+}

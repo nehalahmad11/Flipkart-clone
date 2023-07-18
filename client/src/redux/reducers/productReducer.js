@@ -11,3 +11,19 @@ import * as actionType from '../constants/productConstant'
                     return state;
         }
 }
+
+export const getProductsDetailsReducer=(state={product:{}},action)=>{
+    switch(action.type){
+        case actionType.GET_PROUDCTS_DETAILS_REQUEST:
+            return {loading:true}
+        case actionType.GET_PROUDCTS_DETAILS_SUCCES:
+            return {loading:false,product:action.payload}    
+        case actionType.GET_PROUDCTS_DETAILS_FAIL:
+            return{loading:false,error:action.payload}
+        case actionType.GET_PROUDCTS_DETAILS_RESET:
+            return{product:{}} 
+            default:
+                return state;
+    }
+
+}
