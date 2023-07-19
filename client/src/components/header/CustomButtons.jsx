@@ -10,21 +10,35 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 // components
 import LoginDialog from "../login/loginDailog";
 import { DataContext } from "../../context/DataProvider";
+// here handimg header of login ,cart, or seller of more button
 
-const IconWrapper=styled(Box)`
-    display:flex;
-    margin:0 4% 0 auto;
-    & > button, & > p, & > div{
-        margin-right:40px;
-        align-item:center;
-        
+const IconWrapper=styled(Box)(({theme})=>({
+    display:'flex',
+    margin:'0 4% 0 auto',
+    '& > *':{
+        marginRight:40,
+        fontSize:16,
+        alignItem:'center'
+    },
+    [theme.breakpoints.down('md')]:{
+        display:'block'
     }
-`
+}))
+    
 
-const CartContainer=styled(Box)`
-        display:flex;
+// here handling button or Drawer of CSS
 
-`
+
+const CartContainer=styled(Box)(({theme})=>({
+        display:'flex',
+    [theme.breakpoints.down('md')]:{
+            display:"block"
+    }
+
+}))
+        
+
+
 // here maneging Login button css
 
 const LoginButtons=styled(Button)`

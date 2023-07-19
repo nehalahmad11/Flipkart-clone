@@ -1,6 +1,6 @@
+import { useState } from "react";
 
-
-import {AppBar,Toolbar,Box,Typography, IconButton,styled, Icon} from "@mui/material";
+import {AppBar,Toolbar,Box,Typography, IconButton,Drawer,List,ListItem,styled,} from "@mui/material";
 
 import {Menu} from '@mui/icons-material';
 // components import here 
@@ -51,16 +51,45 @@ const MenuButton=styled(IconButton)(({theme})=>({
 }))
 
 
-
 const Header=()=>{
+
+    // Drawer button of css 
+const handleOpen=()=>{
+    setOpen(true);
+}
+
+const handleClose=()=>{
+    setOpen(false);
+}
+
+// list of drawer 
+
+const list=()=>(
+    <Box style={{width:200}} onnClick={handleClose}>
+        <List>
+            <ListItem button>
+                <CustomButtons/>
+            </ListItem>
+        </List>
+    </Box>
+)
+
     const LogoUrl="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png";
     const SubImgLogo="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/plus_aef861.png"
+
+    const [open,setOpen]=useState(false);
+
+
     return (
         <StyledHeader>
             <Toolbar style={{minHeight:"55px"}}>
-            <MenuButton>
+            <MenuButton color="inherit" onClick={handleOpen}>
                 <Menu/>
             </MenuButton>
+            {/* Drawer  */}
+                    <Drawer open={open} onClose={handleClose}>
+                            {list()}
+                    </Drawer>
                 <Component to={'/'}>
                 <img src={LogoUrl} alt="logo" style={{width:"75px"}}/>
                 <Box style={{display:"flex"}}>
