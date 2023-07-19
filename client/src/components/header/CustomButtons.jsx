@@ -16,7 +16,7 @@ const IconWrapper=styled(Box)(({theme})=>({
     display:'flex',
     margin:'0 4% 0 auto',
     '& > *':{
-        marginRight:40,
+        marginRight:'40px !important',
         fontSize:16,
         alignItem:'center'
     },
