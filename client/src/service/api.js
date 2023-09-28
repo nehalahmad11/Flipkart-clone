@@ -17,3 +17,16 @@ export const authenticationLogin=async(data)=>{
         return error.response;
     }
 }
+
+// Making the Api for the Payment Paytmgateway
+
+export  const payUsingPaytm = async(data) => {
+    try{
+        let response=await axios.post(`${URL}/payment`, data);
+        return response.data;
+    }
+    catch(error){
+        console.log("Error while Calling Payment Api", error);
+    } 
+
+}

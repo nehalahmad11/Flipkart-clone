@@ -1,15 +1,16 @@
 import { useState, useContext} from "react";
 
-import { Button, Typography,Box,styled } from "@mui/material"
-import Profile from "./profiles";
-
-
-import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { Button, Typography,Box,styled, Badge } from "@mui/material"
+import {Link} from 'react-router-dom';
+import { useSelector } from "react-redux";
 
 
 // components
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart'
 import LoginDialog from "../login/loginDailog";
 import { DataContext } from "../../context/DataProvider";
+import Profile from "./profiles";
+
 // here handimg header of login ,cart, or seller of more button
 
 const IconWrapper=styled(Box)(({theme})=>({
@@ -29,8 +30,10 @@ const IconWrapper=styled(Box)(({theme})=>({
 // here handling button or Drawer of CSS
 
 
-const CartContainer=styled(Box)(({theme})=>({
+const CartContainer=styled(Link)(({theme})=>({
         display:'flex',
+        textDecoration:'none',
+        color:'inherit',
     [theme.breakpoints.down('md')]:{
             display:"block"
     }
@@ -57,7 +60,7 @@ const CustomButtons=()=>{
 
     // Here Fstching context Provider
     const {account,setAccount}=useContext(DataContext);
-
+    const {cartItems}=useSelector(state=>state.cart);
 
     const openDialog=()=>{
         setOpen(true);
@@ -71,9 +74,11 @@ const CustomButtons=()=>{
            
             <Typography style={{marginTop:3, width:135}}>Become a Seller</Typography>
             <Typography style={{marginTop:3}}>More</Typography>
-            <CartContainer style={{marginTop:4}}>
+            <CartContainer to={'/cart'} style={{marginTop:4}}>
+                <Badge badgeContent={cartItems?.length} color="secondary">
                 <ShoppingCartIcon/>
-                <Typography>Cart</Typography>
+                </Badge>
+                <Typography style={{marginLeft:7}}>Cart</Typography>
             </CartContainer>
             {/* here passing open as a props */}
             <LoginDialog open={open} setOpen={setOpen}/>

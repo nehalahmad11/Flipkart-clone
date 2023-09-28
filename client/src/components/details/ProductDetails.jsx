@@ -39,6 +39,7 @@ const ProductDetails=({product})=>{
     // time of delivery reached of css
     const date= new Date(new Date().getTime()+(5 * 24 * 60 * 60 * 1000));
     return(<>
+        <Box style={{marginLeft:12}}>
         <Typography>{product.title.longTitle}</Typography>
         <Typography style={{marginTop: 5,
             color:'#878787',
@@ -60,6 +61,7 @@ const ProductDetails=({product})=>{
                 <Typography><StyledBadge/>Bank Offer10% off on Axis Bank Debit Card and EMI Transactions, up to ₹500, on orders of ₹5,000 and above T&C</Typography>
                 <Typography><StyledBadge/>Bank OfferFlat ₹3,000 Off on HDFC Bank Credit Card EMI Trxns on orders priced between ₹40,000 to ₹49,999T&C</Typography>
             </SmallText>
+        </Box>
             <Table>
                 <TableBody>
                     <ColumnText>
@@ -68,7 +70,7 @@ const ProductDetails=({product})=>{
                     </ColumnText>
                     <ColumnText>
                         <TableCell style={{color:'#878787'}}>Warranty</TableCell>
-                        <TableCell >No Warranty</TableCell>
+                        <TableCell >No Warranty</TableCell> 
                     </ColumnText>
                     <ColumnText>
                         <TableCell style={{color:'#878787'}}>Seller</TableCell>

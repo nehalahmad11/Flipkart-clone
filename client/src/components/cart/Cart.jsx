@@ -1,18 +1,52 @@
 
-import { Grid, Typography,Box ,styled} from "@mui/material";
+import { Grid, Typography,Box,Button,styled} from "@mui/material";
 import { useSelector } from "react-redux";
 // Components 
 import CartItem from "./CartItem";
 import TotalBalance from "./TotalBalance";
+import EmptyCart from "./EmptyCart";
 
 
-const Conatiner=styled(Grid)`
-    padding:30px 135px;
+const Conatiner=styled(Grid)(({theme})=>({
+    padding:'30px 135px',
+    [theme.breakpoints.down('md')]:{
+        padding:'15px 0'
+    }
+}))
+    
 
-`;
+;
 const Header=styled(Box)`
     padding:15px 24px;
-`
+    background:#fff;
+`;
+
+const ButtonWrapper=styled(Box)`
+    padding:16px 20px;
+    background:#fff;
+    box-shadow:0 -2px 10px 0 rgb(0 0 0 /10%);
+    border-top:1px solid #f0f0f0;
+`;
+// css of Place Order Button
+
+const PLaceOrderButton=styled(Button)`
+    display:flex;
+    margin-left:auto;
+    background:#fb641b;
+    color:#fff;
+    width:270px;
+    height:51px;
+    border-radius:2px;
+
+`;
+const LeftComponent=styled(Grid)(({theme})=>({
+    paddingRight:'15px',
+    [theme.breakpoints.down('md')]:{
+        marginBottom:15
+    }
+}))
+   
+
 
 const Cart=()=>{
 
@@ -22,7 +56,7 @@ const Cart=()=>{
             {
                 cartItems.length ? 
                 <Conatiner container>
-                    <Grid item lg={9} md={9} sm={12} xs={12}>
+                    <LeftComponent item lg={9} md={9} sm={12} xs={12}>
                         <Header>
                             <Typography>My Cart ({cartItems.length})</Typography>
                         </Header>
@@ -31,12 +65,16 @@ const Cart=()=>{
                                 <CartItem item={item}/>
                             ))
                         }
-                    </Grid>
+                        {/* here working on place order button */}
+                        <ButtonWrapper>
+                            <PLaceOrderButton>Place Order</PLaceOrderButton>
+                        </ButtonWrapper>
+                    </LeftComponent>
                     <Grid item lg={3} md={3} sm={12} xs={12}>
-                            <TotalBalance/>
+                            <TotalBalance cartItems={cartItems}/>
                     </Grid>
                 </Conatiner>
-                : <div>Empty</div>
+                : <EmptyCart/>
             }
         </>
     )
